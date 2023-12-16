@@ -1,0 +1,14 @@
+.coo-elementor-podcast-list-item {
+    margin-bottom: 50px;
+}
+
+.coo-elementor-podcast-list-title {
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.coo-elementor-podcast-list-pagi-container a, .coo-elementor-podcast-list-pagi-container .current{
+    padding: 6px 12px;
+    border-radius: 3px;
+    transition: all 0.4s;
+}
