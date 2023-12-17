@@ -757,7 +757,7 @@ class Main extends BaseWidget
             'coo_elementor_podcast_search_submit_text_color_hover',
             [
                 'label' => esc_html__('Text Color', 'cooalliance-ele'),
-                'type' => \Elementor\Controls_Manager::COLOR,
+                'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .coo-elementor-podcast-search-submit:hover' => 'color: {{VALUE}};',
                 ],

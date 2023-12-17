@@ -42,7 +42,13 @@ function coo_ajax_search_podcasts() {
         's'         => $query
     );
     $query = new WP_Query( $args );
+?>
 
+	<div class="coo-elementor-podcast-search-result">
+		<h2>Search Results for "<?php echo sanitize_text_field( $_POST['query'] ); ?>" Total <?php echo $query->found_posts; ?> Results</h2>
+	</div>
+	
+<?php
     // Loop through the posts and output the results
     if ( $query->have_posts() ) {
         while ( $query->have_posts() ) {

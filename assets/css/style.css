@@ -30,14 +30,16 @@
 .coo-elementor-podcast-search form .coo-elementor-podcast-search-submit:hover {
     background-color: #1f9bba;
 }
-
-.lds-hourglass {
+.coo-elementor-podcast-list-thumb img {
+    width: 100%;
+}
+.coo-elementor-hourglass {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
   }
-  .lds-hourglass:after {
+  .coo-elementor-hourglass:after {
     content: " ";
     display: block;
     border-radius: 50%;
@@ -47,9 +49,9 @@
     box-sizing: border-box;
     border: 32px solid #001489;
     border-color: #001489 transparent #001489 transparent;
-    animation: lds-hourglass 1.2s infinite;
+    animation: coo-elementor-hourglass 1.2s infinite;
   }
-  @keyframes lds-hourglass {
+  @keyframes coo-elementor-hourglass {
     0% {
       transform: rotate(0);
       animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
