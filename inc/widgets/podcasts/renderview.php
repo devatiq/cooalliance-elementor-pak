@@ -29,7 +29,7 @@ $coo_pagination_switch = $settings['coo_elementor_podcast_list_pagination'];
     ?>
 
     <div class="coo-elementor-podcast-list" id="coo-elementor-podcast-default">
-
+    <h2>Regular Podcasts</h2>
         <?php
 
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -50,7 +50,7 @@ $coo_pagination_switch = $settings['coo_elementor_podcast_list_pagination'];
             while ($query->have_posts()) : $query->the_post();
 
 
-                include COOELEMENTOR_PATH . '/inc/widgets/podcasts/single-markup.php';
+               include COOELEMENTOR_PATH . '/inc/widgets/podcasts/single-markup.php';
 
             endwhile; ?>
 

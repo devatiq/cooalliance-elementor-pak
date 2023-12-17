@@ -32,105 +32,50 @@ function coo_alliance_ele_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'coo_alliance_ele_scripts' );
 
-
 function coo_ajax_search_podcasts() {
-    $query = sanitize_text_field( $_POST['query'] );
+    // Check for the 'query' and 'paged' parameters
+    $search_query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
-    // Perform your query to search podcasts. This is an example:
+    // Construct the query arguments
     $args = array(
         'post_type' => 'podcasts',
-        's'         => $query
+        's' => $search_query,
+        'posts_per_page' => 2,
+        'paged' => $paged
     );
-    $query = new WP_Query( $args );
-?>
 
-	<div class="coo-elementor-podcast-search-result">
-		<h2>Search Results for "<?php echo sanitize_text_field( $_POST['query'] ); ?>" Total <?php echo $query->found_posts; ?> Results</h2>
-	</div>
-	
-<?php
-    // Loop through the posts and output the results
-    if ( $query->have_posts() ) {
-        while ( $query->have_posts() ) {
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        echo '<div class="coo-elementor-podcast-search-result">';
+        echo '<h2>Search Results for "' . esc_html($search_query) . '" Total ' . $query->found_posts . ' Results</h2>';
+
+        while ($query->have_posts()) {
             $query->the_post();
-			
-			$coo_podcast_player_switch = $settings['coo_elementor_podcast_list_player_switch'];
-			$coo_read_more_switch = $settings['coo_elementor_podcast_list_read_more_switch'];
-			$coo_grid_read_more_text = $settings['coo_elementor_podcast_list_read_more_text'];
-			$coo_apple_subs_switch = $settings['coo_elementor_podcast_list_apple_subs'];
-			
-            ?>
-<div class="coo-elementor-podcast-list-item">
-    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-        <?php if (has_post_thumbnail()) : ?>
-            <div class="coo-elementor-podcast-list-thumb">
-                <figure>
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                        <?php the_post_thumbnail('coo-podcast-thumb'); ?>
-                    </a>
-                </figure>
-            </div>
-        <?php else : ?>
-            <div class="coo-elementor-podcast-list-thumb">
-                <figure>
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                        <?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/sample-img.jpg" alt="' . the_title_attribute(['echo' => false]) . '">'; ?>
-                    </a>
-                </figure>
-            </div>
-        <?php endif; ?>
-
-        <div class="coo-elementor-podcast-list-content">
-            <h3 class="coo-elementor-podcast-list-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-
-            <!-- podcasts player -->
-            <?php
-            include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-            if ($coo_podcast_player_switch === 'yes' && (is_plugin_active('powerpress/powerpress.php') || is_plugin_active('powerpress 2/powerpress.php'))) : ?>
-                <div class="coo-podcast-player">
-                    <?php echo do_shortcode('[powerpress]'); ?>
-                </div>
-            <?php endif; ?>
-
-            <!-- /podcasts player -->
-
-            <!-- podcasts excerpt -->
-            <div class="coo-elementor-podcast-list-excerpt">
-                <p><?php
-                    echo get_the_excerpt() ?></p>
-            </div>
-            <!-- /excerpt -->
-
-            <?php if ($coo_read_more_switch === 'yes') : ?>
-                <div class="coo-elementor-podcast-list-more"><a href="<?php the_permalink(); ?>"><?php echo esc_html($coo_grid_read_more_text); ?></a></div>
-            <?php endif; ?><!-- /read more button -->
-
-            <?php if ($coo_apple_subs_switch === 'yes') : ?>
-                <div class="coo-elementor-podcast-subs-btn">
-                    <h4>Subscribe Now:</h4>
-                    <a href="https://itunes.apple.com/us/podcast/second-in-command-the-chief-behind-the-chief/id1368800817" target="_blank"><?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/apple-podcasts-subscription.png" alt="Apple Podcasts">'; ?></a>
-                </div><!-- /apple subs area -->
-            <?php endif; ?>
-
-        </div> <!-- content -->
-
-    </article>
-
-</div> <!-- end coo-elementor-podcast-list-item -->
-
-<?php
+           include COOELEMENTOR_PATH . '/inc/widgets/podcasts/single-markup.php';
         }
+
+        // Pagination
+        echo '<div class="coo-elementor-podcast-list-pagi-container coo-elementor-podcast-pagination">';
+        echo paginate_links(array(
+            'total' => $query->max_num_pages,
+            'current' => $paged,
+            'format' => '?paged=%#%',
+            'add_args' => array('query' => $search_query)
+        ));
+        echo '</div>'; // end coo-elementor-podcast-pagination
+
+        wp_reset_postdata();
     } else {
         echo 'No podcasts found.';
     }
 
-    wp_reset_postdata();
     die();
 }
-add_action( 'wp_ajax_coo_ajax_search_podcasts', 'coo_ajax_search_podcasts' );
-add_action( 'wp_ajax_nopriv_coo_ajax_search_podcasts', 'coo_ajax_search_podcasts' );
 
+add_action('wp_ajax_coo_ajax_search_podcasts', 'coo_ajax_search_podcasts');
+add_action('wp_ajax_nopriv_coo_ajax_search_podcasts', 'coo_ajax_search_podcasts');
 
 
 function coo_alliance_plugin_general_init() {

@@ -1,5 +1,5 @@
 <?php 
-    $settings = $this->get_settings_for_display();
+   
     $coo_podcast_player_switch = $settings['coo_elementor_podcast_list_player_switch'];
     $coo_read_more_switch = $settings['coo_elementor_podcast_list_read_more_switch'];
     $coo_grid_read_more_text = $settings['coo_elementor_podcast_list_read_more_text'];
