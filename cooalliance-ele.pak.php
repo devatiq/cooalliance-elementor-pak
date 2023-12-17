@@ -41,7 +41,7 @@ function coo_ajax_search_podcasts() {
     $args = array(
         'post_type' => 'podcasts',
         's' => $search_query,
-        'posts_per_page' => 2,
+        'posts_per_page' => 10,
         'paged' => $paged
     );
 

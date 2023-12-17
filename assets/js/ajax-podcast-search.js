@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
     var defaultContent = $('#coo-elementor-podcast-default').html();
 
-    function fetchPodcasts(page = 1, query = '') {
+    function CooFetchPodcasts(page = 1, query = '') {
         // Show preloader or some loading indication
         $('#podcast-preloader').show();
 
@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
         if (searchField !== '') {
             // Empty the podcast list for non-empty queries and fetch new results
             $('.coo-elementor-podcast-list#coo-elementor-podcast-default').empty();
-            fetchPodcasts(1, searchField);
+            CooFetchPodcasts(1, searchField);
         }
     });
 
@@ -54,6 +54,6 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         var page = $(this).attr('href').split('paged=')[1];
         var searchField = $('.coo-elementor-podcast-search-field').val().trim();
-        fetchPodcasts(page, searchField);
+        CooFetchPodcasts(page, searchField);
     });
 });
