@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
         if ($(this).val().trim() === '') {
             // Reset to default content when search field is cleared
             $('.coo-elementor-podcast-list#coo-elementor-podcast-default').html(defaultContent);
-            $('#podcast-search-results').empty();
+            $('#podcast-search-results').empty(); // Clear search results container when search field is cleared
         }
     });
 
