@@ -5,6 +5,7 @@ use Inc\Widgets\BaseWidget;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Background;
 
 class Main extends BaseWidget
 {
@@ -35,6 +36,19 @@ class Main extends BaseWidget
             [
                 'label' => __('Podcasts Setting', 'cooalliance-ele'),
                 'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        // Switch for enabling or disabling search fields
+        $this->add_control(
+            'coo_elementor_podcast_search_switch',
+            [
+                'label' => esc_html__( 'Enable Search Fields', 'cooalliance-ele' ),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'On', 'cooalliance-ele' ),
+                'label_off' => esc_html__( 'Off', 'cooalliance-ele' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
             ]
         );
 
@@ -131,7 +145,7 @@ class Main extends BaseWidget
         $this->start_controls_section(
             'coo_elementor_podcast_list_title_style_section',
             [
-                'label' => __('Title Style', 'cooalliance-ele'),
+                'label' => __('Title', 'cooalliance-ele'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -200,7 +214,7 @@ class Main extends BaseWidget
          $this->start_controls_section(
             'coo_elementor_podcast_content_style_section',
             [
-                'label' => __('Content Style', 'cooalliance-ele'),
+                'label' => __('Content', 'cooalliance-ele'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -234,7 +248,7 @@ class Main extends BaseWidget
         $this->start_controls_section(
             'coo_elementor_podcast_list_button_style_section',
             [
-                'label' => __('Button Style', 'cooalliance-ele'),
+                'label' => __('Button', 'cooalliance-ele'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'coo_elementor_podcast_list_read_more_switch' => 'yes'
@@ -307,7 +321,7 @@ class Main extends BaseWidget
          $this->start_controls_section(
             'coo_elementor_podcast_list_subs_style_section',
             [
-                'label' => __('Subscription Style', 'cooalliance-ele'),
+                'label' => __('Subscription', 'cooalliance-ele'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'coo_elementor_podcast_list_apple_subs' => 'yes'
@@ -331,7 +345,7 @@ class Main extends BaseWidget
          $this->start_controls_section(
             'coo_elementor_podcast_list_pagination_style_section',
             [
-                'label' => __('Pagination Style', 'cooalliance-ele'),
+                'label' => __('Pagination', 'cooalliance-ele'),
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'coo_elementor_podcast_list_pagination' => 'yes'
@@ -424,6 +438,348 @@ class Main extends BaseWidget
         $this->end_controls_tab();
 		$this->end_controls_tabs();
         $this->end_controls_section(); // end pagination style
+
+        $this->start_controls_section(
+            'coo_elementor_podcast_list_search_field_section',
+            [
+                'label' => esc_html__('Search Field', 'cooalliance-ele'),
+                'tab' => Controls_Manager::TAB_CONTENT,
+                'condition' => [
+                    'coo_elementor_podcast_search_switch' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_field_placeholder',
+            [
+                'label' => esc_html__('Search Placeholder', 'cooalliance-ele'),
+                'type' => Controls_Manager::TEXT,
+                'default' => esc_html__('Search Podcasts...', 'cooalliance-ele'),
+                'label_block' => true,
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_submit_label',
+            [
+                'label' => esc_html__('Search Button Label', 'cooalliance-ele'),
+                'type' => Controls_Manager::TEXT,
+                'default' => esc_html__('Search', 'cooalliance-ele'),
+                'label_block' => true,
+            ]
+        );
+
+
+        $this->end_controls_section();
+
+        // Style section for the search form
+        $this->start_controls_section(
+            'coo_elementor_podcast_search_form_style_section',
+            [
+                'label' => esc_html__('Search Box', 'cooalliance-ele'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'coo_elementor_podcast_search_switch' => 'yes',
+                ],
+            ]
+        );
+
+       //gap
+        $this->add_responsive_control(
+            'coo_elementor_podcast_search_form_gap',
+            [
+                'label' => esc_html__('Gap', 'cooalliance-ele'),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                        'step' => 1,
+                    ],                    
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search form' => 'gap: {{SIZE}}{{UNIT}};',
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'coo_elementor_podcast_search_form_background',
+                'label' => esc_html__('Background', 'cooalliance-ele'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-form',
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_form_padding',
+            [
+                'label' => esc_html__('Padding', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-form' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_form_margin',
+            [
+                'label' => esc_html__('Margin', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-form' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_form_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-form' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_controls_section();
+
+        // Start of Search Input Section
+        $this->start_controls_section(
+            'coo_elementor_podcast_search_input_section',
+            [
+                'label' => esc_html__('Search Input', 'cooalliance-ele'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'coo_elementor_podcast_search_switch' => 'yes',
+                ]
+            ]
+        );
+  
+
+        $this->add_group_control(
+            Group_Control_Background::get_type(),
+            [
+                'name' => 'coo_elementor_podcast_search_input_background',
+                'label' => esc_html__('Input Background', 'cooalliance-ele'),
+                'types' => ['classic', 'gradient'],
+                'exclude' => [ 'image' ],
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-field',
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'coo_elementor_podcast_search_input_border',
+                'label' => esc_html__('Input Border', 'cooalliance-ele'),
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-field',
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_input_border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-field' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_input_width',
+            [
+                'label' => esc_html__('Width', 'cooalliance-ele'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'vw'],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'em' => [
+                        'min' => 1,
+                        'max' => 50,
+                    ],
+                    'vw' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-field' => 'flex-basis: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_input_height',
+            [
+                'label' => esc_html__('Height', 'cooalliance-ele'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em'],
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 150,
+                        'step' => 1,
+                    ],
+                    'em' => [
+                        'min' => 1,
+                        'max' => 10,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-field' => 'height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_input_placeholder_color',
+            [
+                'label' => esc_html__('Placeholder Color', 'cooalliance-ele'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-field::placeholder' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        // End of Search Input Section
+        $this->end_controls_section();
+
+        // Start of Submit Button Section
+        $this->start_controls_section(
+            'coo_elementor_podcast_search_submit_section',
+            [
+                'label' => esc_html__('Submit Button', 'cooalliance-ele'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'coo_elementor_podcast_search_switch' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'coo_elementor_podcast_search_submit_typography',
+                'label' => esc_html__('Typography', 'cooalliance-ele'),
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-submit',
+            ]
+        );
+
+        //submit button width
+        $this->add_responsive_control(
+            'coo_elementor_podcast_search_submit_width',
+            [
+                'label' => esc_html__('Width', 'cooalliance-ele'),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => ['px', '%', 'em', 'vw'],
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 1000,
+                        'step' => 1,
+                    ],
+                    '%' => [
+                        'min' => 1,
+                        'max' => 100,
+                    ],
+                    'em' => [
+                        'min' => 1,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'flex-basis: {{SIZE}}{{UNIT}};',
+                ],
+            ],
+        );      
+
+
+        $this->start_controls_tabs('coo_elementor_podcast_search_submit_tabs');
+
+        $this->start_controls_tab(
+            'coo_elementor_podcast_search_submit_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'cooalliance-ele'),
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_submit_text_color',
+            [
+                'label' => esc_html__('Text Color', 'cooalliance-ele'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_submit_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'cooalliance-ele'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'coo_elementor_podcast_search_submit_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'cooalliance-ele'),
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_submit_text_color_hover',
+            [
+                'label' => esc_html__('Text Color', 'cooalliance-ele'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-submit:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_submit_bg_color_hover',
+            [
+                'label' => esc_html__('Background Color', 'cooalliance-ele'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-submit:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
 
     }
 
