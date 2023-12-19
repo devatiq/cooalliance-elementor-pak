@@ -53,7 +53,7 @@ function coo_ajax_search_podcasts() {
 
         while ($query->have_posts()) {
             $query->the_post();
-           include COOELEMENTOR_PATH . '/inc/widgets/podcasts/single-markup.php';
+           include COOELEMENTOR_PATH . '/inc/widgets/podcasts/search-markup.php';
         }
 
         // Pagination
