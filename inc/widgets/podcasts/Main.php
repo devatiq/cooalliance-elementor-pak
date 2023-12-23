@@ -600,7 +600,7 @@ class Main extends BaseWidget
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_search_form_padding',
             [
                 'label' => esc_html__('Padding', 'cooalliance-ele'),
@@ -612,7 +612,7 @@ class Main extends BaseWidget
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_search_form_margin',
             [
                 'label' => esc_html__('Margin', 'cooalliance-ele'),
@@ -682,7 +682,7 @@ class Main extends BaseWidget
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_search_input_width',
             [
                 'label' => esc_html__('Width', 'cooalliance-ele'),
@@ -713,7 +713,7 @@ class Main extends BaseWidget
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_search_input_height',
             [
                 'label' => esc_html__('Height', 'cooalliance-ele'),
@@ -796,9 +796,9 @@ class Main extends BaseWidget
                     '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'flex-basis: {{SIZE}}{{UNIT}};',
                 ],
             ],
-        );
-
-        $this->add_control(
+        );      
+		//button border radius
+		$this->add_control(
             'coo_elementor_podcast_search_submit_border_radius',
             [
                 'label' => esc_html__('Button Border Radius', 'cooalliance-ele'),

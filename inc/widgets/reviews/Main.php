@@ -103,7 +103,7 @@ class Main extends BaseWidget
         );
 
         // Box Padding
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_reviews_box_padding',
             [
                 'label' => __('Box Padding', 'cooalliance-ele'),
@@ -138,7 +138,7 @@ class Main extends BaseWidget
         );
 
         // Star Size
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_reviews_star_size',
             [
                 'label' => __('Star Size', 'cooalliance-ele'),
@@ -212,7 +212,7 @@ class Main extends BaseWidget
         );
 
         // Quote Size
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_reviews_quote_size',
             [
                 'label' => __('Quote Size', 'cooalliance-ele'),
@@ -242,7 +242,7 @@ class Main extends BaseWidget
         );
 
         // Quote Position slider
-        $this->add_control(
+        $this->add_responsive_control(
             'coo_elementor_podcast_reviews_quote_position',
             [
                 'label' => __('Quote Position', 'cooalliance-ele'),

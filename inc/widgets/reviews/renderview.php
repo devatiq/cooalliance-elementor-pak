@@ -15,7 +15,7 @@ $settings = $this->get_settings_for_display();
             <div class="coo-elementor-review-rating">
                 <?php 
                     for ($i = 0; $i < $settings['coo_elementor_podcast_reviews_star_rating']; $i++) {
-                        echo '<i class="eicon-star"></i>';
+                        echo '<i class="fas fa-star"></i>';
                     };
                 ?>                
             </div>

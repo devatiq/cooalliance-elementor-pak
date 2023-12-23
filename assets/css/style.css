@@ -92,8 +92,8 @@
   font-family: Roboto;
   font-size: 26px;
   font-weight: 600;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .coo-elementor-podcast-header {
@@ -105,6 +105,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+margin-top: 20px;
 }
 
 .coo-elementor-podcast-list-more a {
@@ -137,6 +138,7 @@
   font-weight: 400;
   line-height: 1.3em;
   text-transform: capitalize;
+	margin-top:15px;
 }
 
 .coo-ele-podcast-player .powerpress_links a {

@@ -122,39 +122,3 @@ function coo_custom_excerpt_length($excerpt) {
     return $trimmed_text;
 }
 add_filter('get_the_excerpt', 'coo_custom_excerpt_length', 999);
-
-
-// Register podcasts post type
-function register_podcastss_post_type() {
-	register_post_type( 'podcasts',
-		array(
-			'labels' => array(
-				'name' => __( 'Podcasts','cooalliance' ),
-				'singular_name' =>  __( 'Podcast','cooalliance' ),
-				'add_new' =>  __( 'Add New','cooalliance' ),
-				'add_new_item' =>  __( 'Add New Podcast','cooalliance' ),
-				'edit' =>  __( 'Edit','cooalliance' ),
-				'edit_item' =>  __( 'Edit Podcasts','cooalliance' ),
-				'new_item' =>  __( 'New Podcasts','cooalliance' ),
-				'view' =>  __( 'View podcasts','cooalliance' ),
-				'view_item' =>  __( 'View Podcasts','cooalliance' ),
-				'search_items' =>  __( 'Search Podcasts','cooalliance' ),
-				'not_found' =>  __( 'No podcasts found','cooalliance' ),
-				'not_found_in_trash' =>  __( 'No podcasts found in trash','cooalliance' ),
-				'parent' =>  __( 'Parent Podcasts','cooalliance' ),
-			),
-			'public' => true,
-			'show_ui' => true,
-			'has_archive' => true,
-			'publicly_queryable' => true,
-			'show_in_nav_menus' => false,
-			'exclude_from_search' => false,
-			'menu_icon' => 'dashicons-media-audio',
-			'hierarchical' => false,
-            'rewrite' => array( 'with_front' => false ),
-			'supports' => array('title', 'editor', 'thumbnail', 'author', 'revisions'),
-		)
-	);
-//flush_rewrite_rules();
-}
-//add_action( 'init', 'register_podcastss_post_type' );

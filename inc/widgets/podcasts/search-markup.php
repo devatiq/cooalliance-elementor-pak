@@ -28,7 +28,7 @@
             <?php
             include_once(ABSPATH . 'wp-admin/includes/plugin.php');
             if (is_plugin_active('powerpress/powerpress.php') || is_plugin_active('powerpress 2/powerpress.php')) : ?>
-                <div class="coo-podcast-player">
+                <div class="coo-podcast-player coo-ele-podcast-player">
                     <?php echo do_shortcode('[powerpress]'); ?>
                 </div>
             <?php endif; ?>
