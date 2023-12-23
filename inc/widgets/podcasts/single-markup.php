@@ -4,6 +4,10 @@ $coo_podcast_player_switch = $settings['coo_elementor_podcast_list_player_switch
 $coo_read_more_switch = $settings['coo_elementor_podcast_list_read_more_switch'];
 $coo_grid_read_more_text = $settings['coo_elementor_podcast_list_read_more_text'];
 $coo_apple_subs_switch = $settings['coo_elementor_podcast_list_apple_subs'];
+
+if ( ! empty( $settings['coo_elementor_podcast_list_subscribe_url']['url'] ) ) {
+    $this->add_link_attributes( 'coo_elementor_podcast_list_subscribe_url', $settings['coo_elementor_podcast_list_subscribe_url'] );
+}
 ?>
 
 <div class="coo-elementor-podcast-list-item">
@@ -55,7 +59,7 @@ $coo_apple_subs_switch = $settings['coo_elementor_podcast_list_apple_subs'];
 
                 <?php if ($coo_apple_subs_switch === 'yes') : ?>
                     <div class="coo-elementor-podcast-subs-btn">                        
-                        <a href="https://itunes.apple.com/us/podcast/second-in-command-the-chief-behind-the-chief/id1368800817" target="_blank"><?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/sub-btn.svg" alt="Apple Podcasts">'; ?></a>
+                        <a <?php echo $this->get_render_attribute_string( 'coo_elementor_podcast_list_subscribe_url' ); ?>><?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/sub-btn.svg" alt="Apple Podcasts">'; ?></a>
                     </div><!-- /apple subs area -->
                 <?php endif; ?>
 

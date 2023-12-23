@@ -124,6 +124,25 @@ class Main extends BaseWidget
                 'default' => 'yes',
             ]
         );
+        // Subscribe Button URL
+        $this->add_control(
+            'coo_elementor_podcast_list_subscribe_url',
+            [
+                'label' => __('Subscribe Button URL', 'cooalliance-ele'),
+                'type' => Controls_Manager::URL,
+                'placeholder' => 'https://example.com/subscribe',
+                'description' => __('Enter the URL for the subscribe button', 'cooalliance-ele'),
+                'show_external' => true,
+                'default' => [
+                    'url' => 'https://itunes.apple.com/us/podcast/second-in-command-the-chief-behind-the-chief/id1368800817',
+                    'is_external' => true,
+                    'nofollow' => true,
+                ],
+                'condition' => [
+                    'coo_elementor_podcast_list_apple_subs' => 'yes',
+                ],
+            ]
+        );
 
 
         //Pagination
@@ -225,7 +244,7 @@ class Main extends BaseWidget
             [
                 'name' => 'coo_elementor_podcast_list_excerpt_typography',
                 'label' => __('Excerpt Typography', 'cooalliance-ele'),
-                'selector' => '{{WRAPPER}} .coo-elementor-podcast-list-excerpt',
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-list-excerpt, {{WRAPPER}} .coo-elementor-podcast-list-excerpt p',
             ]
         );
 
@@ -237,7 +256,7 @@ class Main extends BaseWidget
                 'type' => Controls_Manager::COLOR,
                 'default' => '#3d3d3d',
                 'selectors' => [
-                    '{{WRAPPER}} .coo-elementor-podcast-list-excerpt, .coo-elementor-podcast-list-excerpt a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .coo-elementor-podcast-list-excerpt, {{WRAPPER}} .coo-elementor-podcast-list-excerpt a, {{WRAPPER}} .coo-elementor-podcast-list-excerpt p' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -255,14 +274,49 @@ class Main extends BaseWidget
                 ],
             ]
         );
-
-          //button typography
-          $this->add_group_control(
+        
+        //button typography
+        $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
                 'name' => 'coo_elementor_podcast_list_button_typography',
                 'label' => __('Button Typography', 'cooalliance-ele'),
-                'selector' => '{{WRAPPER}} .coo-elementor-podcast-list-more',
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-list-more a',
+            ]
+        );
+        
+        // Button border control
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            [
+                'name' => 'coo_elementor_podcast_list_button_border',
+                'label' => __('Button Border', 'cooalliance-ele'),
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-list-more a',
+            ]
+        );
+
+        // Button border-radius control
+        $this->add_control(
+            'coo_elementor_podcast_list_button_border_radius',
+            [
+                'label' => __('Button Border Radius', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-list-more a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        // Button padding control
+        $this->add_control(
+            'coo_elementor_podcast_list_button_padding',
+            [
+                'label' => __('Button Padding', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-list-more a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
             ]
         );
 
@@ -282,10 +336,20 @@ class Main extends BaseWidget
             'coo_elementor_podcast_list_button_color',
             [
                 'label' => __('Color', 'cooalliance-ele'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '#59a818',
+                'type' => Controls_Manager::COLOR,               
                 'selectors' => [
                     '{{WRAPPER}} .coo-elementor-podcast-list-more a' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        // Button background color
+        $this->add_control(
+            'coo_elementor_podcast_list_button_bg_color',
+            [
+                'label' => __('Background Color', 'cooalliance-ele'),
+                'type' => Controls_Manager::COLOR,                
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-list-more a' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -298,7 +362,17 @@ class Main extends BaseWidget
 				'label' => esc_html__( 'Hover Color', 'cooalliance-ele' ),
 			]
 		);
-
+        // Button Hover background color
+        $this->add_control(
+            'coo_elementor_podcast_list_button_hover_bg_color',
+            [
+                'label' => __('Hover Background Color', 'cooalliance-ele'),
+                'type' => Controls_Manager::COLOR,                
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-list-more a:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
         // Button Hover color
         $this->add_control(
             'coo_elementor_podcast_list_button_hover_color',
@@ -308,6 +382,18 @@ class Main extends BaseWidget
                 'default' => '#3d3d3d',
                 'selectors' => [
                     '{{WRAPPER}} .coo-elementor-podcast-list-more a:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        // Button Border Hover Color
+        $this->add_control(
+            'coo_elementor_podcast_list_button_border_hover_color',
+            [
+                'label' => __('Border Hover Color', 'cooalliance-ele'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '#3578e5',
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-list-more a:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );

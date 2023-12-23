@@ -71,7 +71,7 @@ class Main extends BaseWidget
             'coo_elementor_podcast_reviews_feedback_text',
             [
                 'label' => __('Feedback Text', 'cooalliance-ele'),
-                'type' => Controls_Manager::TEXTAREA,
+                'type' => Controls_Manager::WYSIWYG,
                 'default' => __('Enter your feedback here...', 'cooalliance-ele'),
                 'placeholder' => __('Type your feedback...', 'cooalliance-ele'),
                 'description' => __('Write the feedback text for the podcast review.', 'cooalliance-ele'),
