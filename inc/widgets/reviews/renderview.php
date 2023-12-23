@@ -13,19 +13,19 @@ $settings = $this->get_settings_for_display();
         <!--Podcast Review Header-->
         <div class="coo-elementor-podcast-header">
             <div class="coo-elementor-review-rating">
-                <i class="eicon-star"></i>
-                <i class="eicon-star"></i>
-                <i class="eicon-star"></i>
-                <i class="eicon-star"></i>
-                <i class="eicon-star"></i>
+                <?php 
+                    for ($i = 0; $i < $settings['coo_elementor_podcast_reviews_star_rating']; $i++) {
+                        echo '<i class="eicon-star"></i>';
+                    };
+                ?>                
             </div>
             <div class="coo-elementor-review-time">
-                <p>2 days ago</p>
+                <p><?php echo esc_html($settings['coo_elementor_podcast_reviews_time']); ?></p>
             </div>
         </div><!--/ Podcast Review Header-->
         <!--Podcast Feedback-->
         <div class="coo-elementor-podcast-feedback">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel cupiditate dignissimos rem minima, cumque magni odio. Aperiam beatae, culpa ex unde ducimus nihil perspiciatis exercitationem ea est quo consectetur labore excepturi, pariatur doloremque dicta eos quos ipsum. Ex saepe illo placeat at sint iste, fugiat architecto, aut quasi corporis qui, doloribus vel modi dolore veritatis ad impedit esse. Aperiam ratione harum numquam exercitationem nam minus ducimus iure excepturi labore eveniet nobis qui commodi, neque similique optio accusantium sequi magni doloremque quia quisquam dolorum consequatur eligendi tempore id?</p>
+            <?php echo wpautop($settings['coo_elementor_podcast_reviews_feedback_text']); ?>
         </div><!--/ Podcast Feedback-->
         <div class="coo-elementor-podcast-review-quote">
             <i class="eicon-editor-quote"></i>
