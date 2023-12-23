@@ -1,9 +1,9 @@
-<?php 
-   
-    $coo_podcast_player_switch = $settings['coo_elementor_podcast_list_player_switch'];
-    $coo_read_more_switch = $settings['coo_elementor_podcast_list_read_more_switch'];
-    $coo_grid_read_more_text = $settings['coo_elementor_podcast_list_read_more_text'];
-    $coo_apple_subs_switch = $settings['coo_elementor_podcast_list_apple_subs'];
+<?php
+
+$coo_podcast_player_switch = $settings['coo_elementor_podcast_list_player_switch'];
+$coo_read_more_switch = $settings['coo_elementor_podcast_list_read_more_switch'];
+$coo_grid_read_more_text = $settings['coo_elementor_podcast_list_read_more_text'];
+$coo_apple_subs_switch = $settings['coo_elementor_podcast_list_apple_subs'];
 ?>
 
 <div class="coo-elementor-podcast-list-item">
@@ -48,17 +48,18 @@
             </div>
             <!-- /excerpt -->
 
-            <?php if ($coo_read_more_switch === 'yes') : ?>
-                <div class="coo-elementor-podcast-list-more"><a href="<?php the_permalink(); ?>"><?php echo esc_html($coo_grid_read_more_text); ?></a></div>
-            <?php endif; ?><!-- /read more button -->
+            <div class="coo-elementor-podcast-footer">
+                <?php if ($coo_read_more_switch === 'yes') : ?>
+                    <div class="coo-elementor-podcast-list-more"><a href="<?php the_permalink(); ?>"><?php echo esc_html($coo_grid_read_more_text); ?></a></div>
+                <?php endif; ?><!-- /read more button -->
 
-            <?php if ($coo_apple_subs_switch === 'yes') : ?>
-                <div class="coo-elementor-podcast-subs-btn">
-                    <h4>Subscribe Now:</h4>
-                    <a href="https://itunes.apple.com/us/podcast/second-in-command-the-chief-behind-the-chief/id1368800817" target="_blank"><?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/apple-podcasts-subscription.png" alt="Apple Podcasts">'; ?></a>
-                </div><!-- /apple subs area -->
-            <?php endif; ?>
+                <?php if ($coo_apple_subs_switch === 'yes') : ?>
+                    <div class="coo-elementor-podcast-subs-btn">                        
+                        <a href="https://itunes.apple.com/us/podcast/second-in-command-the-chief-behind-the-chief/id1368800817" target="_blank"><?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/sub-btn.svg" alt="Apple Podcasts">'; ?></a>
+                    </div><!-- /apple subs area -->
+                <?php endif; ?>
 
+            </div>
         </div> <!-- content -->
 
     </article>

@@ -28,8 +28,7 @@ $coo_pagination_switch = $settings['coo_elementor_podcast_list_pagination'];
     endif;
     ?>
 
-    <div class="coo-elementor-podcast-list" id="coo-elementor-podcast-default">
-    <h2>Regular Podcasts</h2>
+    <div class="coo-elementor-podcast-list" id="coo-elementor-podcast-default">   
         <?php
 
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;

@@ -1,74 +1,181 @@
 .coo-elementor-podcast-list-item {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
+  border-bottom: 1px dashed #001489;
+  padding-bottom: 50px;
 }
 
 .coo-elementor-podcast-list-title {
-    font-size: 25px;
-    line-height: 1.2;
+  font-size: 25px;
+  line-height: 1.2;
 }
 
-.coo-elementor-podcast-list-pagi-container a, .coo-elementor-podcast-list-pagi-container .current{
-    padding: 6px 12px;
-    border-radius: 3px;
-    transition: all 0.4s;
+.coo-elementor-podcast-list-pagi-container a,
+.coo-elementor-podcast-list-pagi-container .current {
+  padding: 6px 12px;
+  border-radius: 3px;
+  transition: all 0.4s;
 }
+
 .coo-elementor-podcast-search {
-    margin-top: 15px;
-    margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
+
 .coo-elementor-podcast-search form {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
+
 .coo-elementor-podcast-search form .coo-elementor-podcast-search-submit {
-    flex-basis: 20%;
-    background-color: #001489;
-    color: #fff;
-    border: 0;
-    padding: 15px;
+  flex-basis: 20%;
+  background-color: #001489;
+  color: #fff;
+  border: 0;
+  padding: 15px;
 }
+
 .coo-elementor-podcast-search form .coo-elementor-podcast-search-submit:hover {
-    background-color: #1f9bba;
+  background-color: #1f9bba;
 }
+
 .coo-elementor-podcast-list-thumb img {
-    width: 100%;
+  width: 100%;
 }
+
 .coo-elementor-hourglass {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.coo-elementor-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #001489;
+  border-color: #001489 transparent #001489 transparent;
+  animation: coo-elementor-hourglass 1.2s infinite;
+}
+
+.coo-elementor-podcast-search-field {
+  width: 100%;
+  padding: 5px 15px 5px 15px;
+}
+
+.coo-elementor-podcast-search-submit {
+  cursor: pointer;
+}
+
+@keyframes coo-elementor-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
-  .coo-elementor-hourglass:after {
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    margin: 8px;
-    box-sizing: border-box;
-    border: 32px solid #001489;
-    border-color: #001489 transparent #001489 transparent;
-    animation: coo-elementor-hourglass 1.2s infinite;
+
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-  .coo-elementor-podcast-search-field {
-    width: 100%;
-    padding: 5px 15px 5px 15px;
+
+  100% {
+    transform: rotate(1800deg);
   }
-  .coo-elementor-podcast-search-submit {
-    cursor: pointer;
-  }
-  @keyframes coo-elementor-hourglass {
-    0% {
-      transform: rotate(0);
-      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
-    50% {
-      transform: rotate(900deg);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-    100% {
-      transform: rotate(1800deg);
-    }
-  }
-  
+}
+
+.coo-elementor-podcast-list-title {
+  color: #142746;
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.coo-elementor-podcast-header {
+  display: flex;
+  justify-content: space-between;
+}
+.coo-elementor-podcast-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coo-elementor-podcast-list-more a {
+  color: #001489;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 10px;
+  border: 1px solid #001489;
+  padding: 15px 20px;
+}
+
+.coo-elementor-podcast-list-excerpt p {
+  color: #142746;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-transform: capitalize;
+}
+
+.coo-ele-podcast-player .powerpress_links {
+  color: #142746;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.3rem;
+  text-transform: capitalize;
+}
+
+.coo-ele-podcast-player .powerpress_links a {
+  color: #1976D2;
+}
+
+.coo-elementor-podcasts-review-area {
+  border-radius: 10px;
+  background: #B7DCF5;
+  padding: 30px;
+}
+
+.coo-elementor-review-rating i {
+  color: #D3A500;
+  font-size: 14px;
+}
+
+.coo-elementor-review-time p {
+  color: #142746;
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 0;
+}
+.coo-elementor-podcast-feedback {
+  margin-top: 30px;
+}
+.coo-elementor-podcast-feedback p {
+  color: #142746;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.coo-elementor-podcast-review-quote i {
+  color: #142746;
+  font-size: 100px;
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+}
