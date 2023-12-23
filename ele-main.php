@@ -292,7 +292,7 @@ class COOAllianceElePack
 		// Register your widgets dynamically based on the class names.
 		$widgets = [
 			\inc\widgets\podcasts\Main::class,
-			\inc\widgets\Reviews\Main::class,
+			\inc\widgets\reviews\Main::class,
 
 		];
 
