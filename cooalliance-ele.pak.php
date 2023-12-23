@@ -157,4 +157,4 @@ function register_podcastss_post_type() {
 	);
 //flush_rewrite_rules();
 }
-add_action( 'init', 'register_podcastss_post_type' );
+//add_action( 'init', 'register_podcastss_post_type' );
