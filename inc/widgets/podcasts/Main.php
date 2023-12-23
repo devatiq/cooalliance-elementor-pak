@@ -796,7 +796,19 @@ class Main extends BaseWidget
                     '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'flex-basis: {{SIZE}}{{UNIT}};',
                 ],
             ],
-        );      
+        );
+
+        $this->add_control(
+            'coo_elementor_podcast_search_submit_border_radius',
+            [
+                'label' => esc_html__('Button Border Radius', 'cooalliance-ele'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
 
         $this->start_controls_tabs('coo_elementor_podcast_search_submit_tabs');
