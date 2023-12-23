@@ -95,10 +95,12 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
+
 .coo-elementor-podcast-header {
   display: flex;
   justify-content: space-between;
 }
+
 .coo-elementor-podcast-footer {
   display: flex;
   justify-content: space-between;
@@ -162,9 +164,11 @@
   text-transform: capitalize;
   margin: 0;
 }
+
 .coo-elementor-podcast-feedback {
   margin-top: 30px;
 }
+
 .coo-elementor-podcast-feedback p {
   color: #142746;
   font-family: Roboto;
@@ -173,10 +177,20 @@
   font-weight: 400;
   text-transform: capitalize;
 }
+
 .coo-elementor-podcast-review-quote i {
   color: #142746;
   font-size: 100px;
   position: absolute;
   right: 0;
   bottom: -10px;
+}
+
+.coo-elementor-podcast-search-result .coo-elementor-pdocast-search-heading {
+  color: #142746;
+  font-family: Roboto;
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }

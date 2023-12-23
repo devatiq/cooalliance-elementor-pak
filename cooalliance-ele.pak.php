@@ -49,7 +49,7 @@ function coo_ajax_search_podcasts() {
 
     if ($query->have_posts()) {
         echo '<div class="coo-elementor-podcast-search-result">';
-        echo '<h2>Search Results for "' . esc_html($search_query) . '" Total ' . $query->found_posts . ' Results</h2>';
+        echo '<h2 class="coo-elementor-pdocast-search-heading">Search Results for "' . esc_html($search_query) . '" Total ' . $query->found_posts . ' Results</h2>';
 
         while ($query->have_posts()) {
             $query->the_post();
