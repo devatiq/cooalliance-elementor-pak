@@ -19,10 +19,12 @@ $coo_pagination_switch = $settings['coo_elementor_podcast_list_pagination'];
                 <input type="search" class="coo-elementor-podcast-search-field" placeholder="<?php echo esc_html($settings['coo_elementor_podcast_search_field_placeholder']); ?>" value="<?php echo get_search_query(); ?>" name="s" />
                 <button type="submit" class="coo-elementor-podcast-search-submit"><?php echo esc_html($settings['coo_elementor_podcast_search_submit_label']); ?></button>
             </form>
+			<div id="podcast-preloader" style="display:none">
+				 <?php echo '<img src="' . COOELEMENTOR_ASSETS . '/img/podcast-preloader.gif" alt="podcast preloader">'; ?>
+	<!--             <div class="coo-elementor-hourglass"></div> -->
+			</div>
         </div>
-        <div id="podcast-preloader" style="display: none;">
-            <div class="coo-elementor-hourglass"></div>
-        </div>
+
         <div id="podcast-search-results"></div>
     <?php
     endif;
@@ -63,6 +65,8 @@ $coo_pagination_switch = $settings['coo_elementor_podcast_list_pagination'];
                         'format'  => '?paged=%#%',
                         'current' => max(1, $paged),
                         'total'   => $query->max_num_pages,
+						'end_size' => 4,
+						'mid_size' => 5,
                     ));
                     ?>
                 </div>

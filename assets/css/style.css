@@ -18,7 +18,7 @@
 
 .coo-elementor-podcast-search {
   margin-top: 15px;
-  margin-bottom: 15px;
+ margin-bottom:15px;
 }
 
 .coo-elementor-podcast-search form {
@@ -193,6 +193,9 @@ margin-top: 20px;
   font-family: Roboto;
   font-size: 26px;
   font-weight: 600;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#podcast-preloader img {
+    width: 60px;
 }
