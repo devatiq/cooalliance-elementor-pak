@@ -9,9 +9,15 @@
   line-height: 1.2;
 }
 
+.coo-elementor-podcast-list-pagi-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+}
+
 .coo-elementor-podcast-list-pagi-container a,
 .coo-elementor-podcast-list-pagi-container .current {
-  padding: 6px 12px;
+  padding: 0 12px;
   border-radius: 3px;
   transition: all 0.4s;
 }
@@ -196,6 +202,6 @@ margin-top: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#podcast-preloader img {
+.podcast-preloader img {
     width: 60px;
 }

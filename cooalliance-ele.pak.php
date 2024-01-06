@@ -18,11 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function coo_alliance_ele_scripts() {   
 	// enqueue style
-    wp_enqueue_style( 'abcbiz-elementor-pro-style',  COOELEMENTOR_ASSETS . "/css/style.css");
-    wp_enqueue_style( 'abcbiz-elementor-pro-responsive',  COOELEMENTOR_ASSETS . "/css/responsive.css");
+    wp_enqueue_style( 'abcbiz-elementor-pro-style', COOELEMENTOR_ASSETS . "/css/style.css", array(), '1.1.0' );
+wp_enqueue_style( 'abcbiz-elementor-pro-responsive', COOELEMENTOR_ASSETS . "/css/responsive.css", array(), '1.0.0' );
 
 
-	wp_enqueue_script( 'ajax-podcast-search', COOELEMENTOR_ASSETS . '/js/ajax-podcast-search.js', array( 'jquery' ), null, true );
+
+	wp_enqueue_script( 'ajax-podcast-search', COOELEMENTOR_ASSETS . '/js/ajax-podcast-search.js', array( 'jquery' ), 1.3, true );
     
     // Localize the script with new data
     wp_localize_script( 'ajax-podcast-search', 'ajax_podcast_params', array(
@@ -36,6 +37,7 @@ function coo_ajax_search_podcasts() {
     // Check for the 'query' and 'paged' parameters
     $search_query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+	$widgetId = isset($_POST['widgetId']) ? sanitize_text_field($_POST['widgetId']) : '';
 
     // Construct the query arguments
     $args = array(
@@ -57,7 +59,7 @@ function coo_ajax_search_podcasts() {
         }
 
         // Pagination
-        echo '<div class="coo-elementor-podcast-list-pagi-container coo-elementor-podcast-pagination">';
+        echo '<div id="coo-elementor-podcast-'.$widgetId.'" class="coo-elementor-podcast-list-pagi-container coo-elementor-podcast-pagination">';
         echo paginate_links(array(
             'total' => $query->max_num_pages,
             'current' => $paged,

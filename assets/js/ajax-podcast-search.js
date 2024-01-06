@@ -1,59 +1,66 @@
 jQuery(document).ready(function($) {
-    var defaultContent = $('#coo-elementor-podcast-default').html();
+    // Function to initialize each podcast widget
+    function initCooPodcastWidget(widgetId) {
+        var defaultContent = $('#coo-elementor-podcast-default-' + widgetId).html();
 
-    function CooFetchPodcasts(page = 1, query = '') {
-        // Show preloader or some loading indication
-        $('#podcast-preloader').show();
+        function CooFetchPodcasts(page = 1, query = '') {
+            var preloaderSelector = '#podcast-preloader-' + widgetId;
+            var resultsSelector = '#podcast-search-results-' + widgetId;
 
-        $.ajax({
-            url: ajax_podcast_params.ajax_url,
-            type: 'POST',
-            data: {
-                action: 'coo_ajax_search_podcasts',
-                query: query,
-                paged: page
-            },
-            success: function(response) {
-                // Hide preloader
-                $('#podcast-preloader').hide();
-                // Update the podcast search results
-                $('#podcast-search-results').html(response);
-            },
-            error: function() {
-                // Hide preloader and show error message
-                $('#podcast-preloader').hide();
-                $('#podcast-search-results').html('An error occurred.');
+            $(preloaderSelector).show();
+
+            $.ajax({
+                url: ajax_podcast_params.ajax_url,
+                type: 'POST',
+                data: {
+                    action: 'coo_ajax_search_podcasts',
+                    query: query,
+                    paged: page,
+					widgetId:widgetId,
+                },
+                success: function(response) {
+                    $(preloaderSelector).hide();
+                    $(resultsSelector).html(response);
+                },
+                error: function() {
+                    $(preloaderSelector).hide();
+                    $(resultsSelector).html('An error occurred.');
+                }
+            });
+        }
+
+        // Search field input handler
+        $('#coo-elementor-podcast-search-field-' + widgetId).on('input', function() {
+            var searchValue = $(this).val().trim();
+            if (searchValue === '') {
+                $('#coo-elementor-podcast-default-' + widgetId).html(defaultContent);
+                $('#podcast-search-results-' + widgetId).empty();
             }
+        });
+
+        // Search form submission handler
+        $('#coo-elementor-podcast-search-form-' + widgetId).submit(function(e) {
+            e.preventDefault();
+            var searchField = $('#coo-elementor-podcast-search-field-' + widgetId).val().trim();
+
+            if (searchField !== '') {
+                $('#coo-elementor-podcast-default-' + widgetId).empty();
+                CooFetchPodcasts(1, searchField);
+            }
+        });
+
+        // Pagination link click handler
+        $(document).on('click', '#coo-elementor-podcast-' + widgetId + '.coo-elementor-podcast-pagination a', function(e) {
+            e.preventDefault();
+            var page = $(this).attr('href').split('paged=')[1];
+            var searchField = $('#coo-elementor-podcast-search-field-' + widgetId).val().trim();
+            CooFetchPodcasts(page, searchField);
         });
     }
 
-    // Search field input handler
-    $('.coo-elementor-podcast-search-field').on('input', function() {
-        var searchValue = $(this).val().trim();
-        if (searchValue === '') {
-            // Reset to default content when search field is cleared
-            $('.coo-elementor-podcast-list#coo-elementor-podcast-default').html(defaultContent);
-            $('#podcast-search-results').empty(); // Clear search results container
-        }
-    });
-
-    // Search form submission handler
-    $('.coo-elementor-podcast-search-form').submit(function(e) {
-        e.preventDefault();
-        var searchField = $('.coo-elementor-podcast-search-field').val().trim();
-
-        if (searchField !== '') {
-            // Empty the podcast list for non-empty queries and fetch new results
-            $('.coo-elementor-podcast-list#coo-elementor-podcast-default').empty();
-            CooFetchPodcasts(1, searchField);
-        }
-    });
-
-    // Pagination link click handler
-    $(document).on('click', '.coo-elementor-podcast-pagination a', function(e) {
-        e.preventDefault();
-        var page = $(this).attr('href').split('paged=')[1];
-        var searchField = $('.coo-elementor-podcast-search-field').val().trim();
-        CooFetchPodcasts(page, searchField);
+    // Initialize widgets
+    $('.coo-elementor-podcast-widget').each(function() {
+        var widgetId = $(this).data('widget-id');
+        initCooPodcastWidget(widgetId);
     });
 });

@@ -51,6 +51,19 @@ class Main extends BaseWidget
                 'default' => 'yes',
             ]
         );
+		
+		 // Switch for enabling or disabling podcasts list
+        $this->add_control(
+            'coo_elementor_podcast_list_switch',
+            [
+                'label' => esc_html__( 'Display Latest Podcast', 'cooalliance-ele' ),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'On', 'cooalliance-ele' ),
+                'label_off' => esc_html__( 'Off', 'cooalliance-ele' ),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
 
         //number of post
         $this->add_control(
@@ -742,10 +755,20 @@ class Main extends BaseWidget
                 'label' => esc_html__('Placeholder Color', 'cooalliance-ele'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .coo-elementor-podcast-search-field::placeholder' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .coo-elementor-podcast-search-field::placeholder, {{WRAPPER}} .coo-elementor-podcast-search-field' => 'color: {{VALUE}};',
                 ],
             ]
         );
+		
+		$this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'coo_elementor_podcast_input_placeholder_typography',
+                'label' => esc_html__('Typography', 'cooalliance-ele'),
+                'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-field::placeholder, {{WRAPPER}} .coo-elementor-podcast-search-field',
+            ]
+        );
+		
         // End of Search Input Section
         $this->end_controls_section();
 
@@ -831,16 +854,15 @@ class Main extends BaseWidget
             ]
         );
 
-        $this->add_control(
-            'coo_elementor_podcast_search_submit_bg_color',
-            [
-                'label' => esc_html__('Background Color', 'cooalliance-ele'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .coo-elementor-podcast-search-submit' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+		
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'coo_elementor_podcast_search_submit_bg_color',
+				'types' => [ 'classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-submit',
+			]
+		);
 
         $this->end_controls_tab();
 
@@ -862,16 +884,14 @@ class Main extends BaseWidget
             ]
         );
 
-        $this->add_control(
-            'coo_elementor_podcast_search_submit_bg_color_hover',
-            [
-                'label' => esc_html__('Background Color', 'cooalliance-ele'),
-                'type' => \Elementor\Controls_Manager::COLOR,
-                'selectors' => [
-                    '{{WRAPPER}} .coo-elementor-podcast-search-submit:hover' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
+		$this->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			[
+				'name' => 'coo_elementor_podcast_search_submit_bg_color_hover',
+				'types' => [ 'classic', 'gradient'],
+				'selector' => '{{WRAPPER}} .coo-elementor-podcast-search-submit:hover',
+			]
+		);
 
         $this->end_controls_tab();
 
