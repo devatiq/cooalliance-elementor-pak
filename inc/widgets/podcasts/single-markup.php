@@ -4,6 +4,8 @@ $coo_podcast_player_switch = $settings['coo_elementor_podcast_list_player_switch
 $coo_read_more_switch = $settings['coo_elementor_podcast_list_read_more_switch'];
 $coo_grid_read_more_text = $settings['coo_elementor_podcast_list_read_more_text'];
 $coo_apple_subs_switch = $settings['coo_elementor_podcast_list_apple_subs'];
+$post_id = get_the_ID();
+$podcast_player_link = get_post_meta($post_id, '_podcast_player_link', true);
 
 if ( ! empty( $settings['coo_elementor_podcast_list_subscribe_url']['url'] ) ) {
     $this->add_link_attributes( 'coo_elementor_podcast_list_subscribe_url', $settings['coo_elementor_podcast_list_subscribe_url'] );
@@ -35,14 +37,12 @@ if ( ! empty( $settings['coo_elementor_podcast_list_subscribe_url']['url'] ) ) {
             <h3 class="coo-elementor-podcast-list-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
             <!-- podcasts player -->
-            <?php
-            include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-            if ($coo_podcast_player_switch === 'yes' && (is_plugin_active('powerpress/powerpress.php') || is_plugin_active('powerpress 2/powerpress.php'))) : ?>
-                <div class="coo-podcast-player coo-ele-podcast-player">
-                    <?php echo do_shortcode('[powerpress]'); ?>
-                </div>
-            <?php endif; ?>
-
+            <?php if (!empty($podcast_player_link) && $coo_podcast_player_switch === 'yes') : ?>
+            <div class="coo-podcast-player coo-ele-podcast-player">
+            <iframe title="<?php the_title(); ?>" frameborder="0" src="<?php echo esc_url($podcast_player_link); ?>"></iframe>
+            </div>
+             <?php else : ?>
+             <?php endif; ?>
             <!-- /podcasts player -->
 
             <!-- podcasts excerpt -->

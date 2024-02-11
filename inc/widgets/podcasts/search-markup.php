@@ -24,15 +24,16 @@
         <div class="coo-elementor-podcast-list-content">
             <h3 class="coo-elementor-podcast-list-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
-            <!-- podcasts player -->
-            <?php
-            include_once(ABSPATH . 'wp-admin/includes/plugin.php');
-            if (is_plugin_active('powerpress/powerpress.php') || is_plugin_active('powerpress 2/powerpress.php')) : ?>
-                <div class="coo-podcast-player coo-ele-podcast-player">
-                    <?php echo do_shortcode('[powerpress]'); ?>
-                </div>
-            <?php endif; ?>
-
+             <!-- podcasts player -->
+             <?php 
+             $post_id = get_the_ID();
+             $podcast_player_link = get_post_meta($post_id, '_podcast_player_link', true); ?>
+             <?php if (!empty($podcast_player_link)) : ?>
+            <div class="coo-podcast-player coo-ele-podcast-player">
+            <iframe title="<?php the_title(); ?>" frameborder="0" src="<?php echo esc_url($podcast_player_link); ?>"></iframe>
+            </div>
+             <?php else : ?>
+             <?php endif; ?>
             <!-- /podcasts player -->
 
             <!-- podcasts excerpt -->

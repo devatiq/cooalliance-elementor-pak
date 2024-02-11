@@ -242,6 +242,118 @@ class Main extends BaseWidget
 		$this->end_controls_tabs();
 		$this->end_controls_section(); // end title style
 
+        // Start player style Section
+        $this->start_controls_section(
+            'coo_elementor_podcast_list_player_style_section',
+            [
+                'label' => esc_html__('Player Style', 'cooalliance-ele'),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'coo_elementor_podcast_list_player_switch' => 'yes',
+                ]
+            ]
+        );
+
+        //Player width
+        $this->add_responsive_control(
+			'coo_elementor_podcast_player_width',
+			[
+				'label' => esc_html__( 'Player Width', 'cooalliance-ele' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ '%', 'rem'],
+				'range' => [
+					'rem' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'default' => [
+					'unit' => '%',
+					'size' => 100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .coo-ele-podcast-player iframe' => 'width: {{SIZE}}{{UNIT}} !important;',
+				],
+			]
+		);
+
+        //Player height
+        $this->add_responsive_control(
+			'coo_elementor_podcast_player_height',
+			[
+				'label' => esc_html__( 'Player Width', 'cooalliance-ele' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px', 'rem'],
+				'range' => [
+					'rem' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+					],
+				],
+				'default' => [
+					'unit' => 'rem',
+					'size' => 13,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .coo-ele-podcast-player iframe' => 'height: {{SIZE}}{{UNIT}} !important;',
+				],
+			]
+		);
+
+         //Player spacing
+        $this->add_responsive_control(
+			'coo_elementor_podcast_player_spacing',
+			[
+				'label' => esc_html__( 'Player Spacing', 'cooalliance-ele' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px'],
+				'default' => [
+					'top' => 0,
+					'right' => 0,
+					'bottom' => 0,
+					'left' => 0,
+					'unit' => 'px',
+					'isLinked' => false,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .coo-ele-podcast-player iframe' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+         //Player radius
+        $this->add_responsive_control(
+			'coo_elementor_podcast_player_radius',
+			[
+				'label' => esc_html__( 'Edge Radius', 'cooalliance-ele' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => ['px'],
+				'default' => [
+					'top' => 4,
+					'right' => 4,
+					'bottom' => 4,
+					'left' => 4,
+					'unit' => 'px',
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .coo-ele-podcast-player iframe' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $this->end_controls_section(); // end player style
+
          // Content style section
          $this->start_controls_section(
             'coo_elementor_podcast_content_style_section',

@@ -293,6 +293,8 @@ class COOAllianceElePack
 		$widgets = [
 			\inc\widgets\podcasts\Main::class,
 			\inc\widgets\reviews\Main::class,
+			\inc\widgets\CaptivatePlayer\Main::class,
+			\inc\widgets\CaptivatePlayerSingle\Main::class,
 
 		];
 
