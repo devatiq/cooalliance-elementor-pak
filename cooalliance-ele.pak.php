@@ -5,7 +5,7 @@
  * Plugin URI: https://supreox.com/
  * Author: Atiqur Rahman
  * Author URI: https://devatiq.com/
- * Version: 1.1.0
+ * Version: 1.1.1
  * Text Domain: cooalliance-ele
  */
 
