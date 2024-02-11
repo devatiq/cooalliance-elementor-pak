@@ -205,3 +205,10 @@ margin-top: 20px;
 .podcast-preloader img {
     width: 60px;
 }
+
+.coo-ele-podcast-player iframe {
+    width: 100% !important;
+    height: 13rem !important;
+    margin: 0px 0px 20px 0px;
+    border-radius: 4px 4px 4px 4px;
+}
