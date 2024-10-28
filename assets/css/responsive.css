@@ -1,0 +1,66 @@
+@media screen  and (max-width: 1259px) and (min-width: 1025px) {
+	#coo-podcast-brands.coo-podcast-brands > div{
+    	width: 22% !important;
+	}
+}
+@media screen and (max-width: 820px) {
+	
+	.coo-ele-podcast-player .powerpress_links {
+    	margin-top: 5px;
+		padding-bottom: 8px;
+	}
+	
+	.coo-elementor-podcast-subs-btn img {
+    	width: 180px;
+	}
+	.coo-elementor-podcast-list-more a {
+    	padding: 10px 15px;
+	}
+	.coo-elementor-podcast-list-item {
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+	}
+	.coo-elementor-podcast-footer {
+    	margin-top: 10px;
+	}
+	.coo-ele-podcast-player .powerpress_links {
+    	font-size: 16px;
+	}
+	.coo-elementor-podcast-list-thumb img {
+    	border-radius: 3px !important;
+	}	
+	.coo-elementor-podcast-list.coo-elementor-podcast-grid {
+		grid-template-columns: repeat(2, 1fr);
+	  }
+	
+}
+
+@media screen and (max-width: 767px) {
+	.coo-elementor-podcast-feedback {
+		margin-top: 10px;
+	}
+	.coo-elementor-podcast-list-title {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.coo-elementor-podcast-subs-btn img {
+		width: 150px;
+	}
+	.coo-elementor-podcast-list-item {
+		margin-bottom: 25px;
+		padding-bottom: 25px;
+	}
+	.coo-elementor-podcast-search-result .coo-elementor-pdocast-search-heading {		
+		font-size: 18px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.coo-elementor-podcast-review-quote {
+		display: none;
+	}
+	.coo-elementor-podcast-list.coo-elementor-podcast-grid {
+		grid-template-columns: repeat(1, 1fr);
+		gap: 10px;
+	  }
+}
+
